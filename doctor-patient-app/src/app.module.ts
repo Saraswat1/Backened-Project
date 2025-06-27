@@ -10,11 +10,12 @@ imports: [
 ConfigModule.forRoot({ isGlobal: true }),
 // Connect to SQLite and auto-load all entity files (including Doctor and Patient)
 TypeOrmModule.forRoot({
-  type: 'sqlite',
-  database: process.env.DB_NAME || 'database.sqlite',
-  entities: [__dirname + '/**/*.entity{.ts,.js}'],
+  type: 'postgres',
+  url: process.env.DATABASE_URL,
+  autoLoadEntities: true,
   synchronize: true,
-}),
+})
+
 
 // Custom application modules
 AuthModule,
